@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import styles from './ItemListContainer.module.css';
+import { useParams } from 'react-router-dom';
+import ItemDetail from './ItemDetail';
 import Spinner from './Spinner';
 
 // Mock data
@@ -19,48 +19,31 @@ const products = [
     { id: '12', name: 'Yoga Mat', category: 'sports', price: 25, description: 'A comfortable yoga mat.', stock: 13 },
 ];
 
-const ItemListContainer = ({ greeting }) => {
-    const [items, setItems] = useState([]);
+const ItemDetailContainer = () => {
+    const [item, setItem] = useState(null);
     const [loading, setLoading] = useState(true);
-    const { id: categoryId } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
         setLoading(true);
-        const getProducts = new Promise((resolve) => {
+        const getProduct = new Promise((resolve) => {
             setTimeout(() => {
-                const filteredProducts = categoryId
-                    ? products.filter(p => p.category === categoryId)
-                    : products;
-                resolve(filteredProducts);
+                const product = products.find(p => p.id === id);
+                resolve(product);
             }, 500);
         });
 
-        getProducts.then((products) => {
-            setItems(products);
+        getProduct.then((product) => {
+            setItem(product);
             setLoading(false);
         });
-    }, [categoryId]);
+    }, [id]);
 
     if (loading) {
         return <Spinner />;
     }
 
-    return (
-        <div className={styles.container}>
-            <h2 className={styles.title}>{greeting}</h2>
-            <div className={styles.list}>
-                {items.map(item => (
-                    <div key={item.id} className={styles.card}>
-                        <h3 className={styles.itemName}>{item.name}</h3>
-                        <p className={styles.itemPrice}>${item.price}</p>
-                        <Link to={`/item/${item.id}`} className={styles.detailsLink}>
-                            Ver Detalles
-                        </Link>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
+    return <ItemDetail item={item} />;
 };
 
-export default ItemListContainer;
+export default ItemDetailContainer;

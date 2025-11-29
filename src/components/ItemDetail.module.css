@@ -1,0 +1,55 @@
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 40px;
+    margin: 20px auto;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: white;
+    text-align: center;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #666;
+    margin: 20px 0;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+    margin: 20px 0;
+}
+
+.button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #218838;
+}
+
+/* --- Media Query para Responsividad --- */
+@media (max-width: 600px) {
+    .card {
+        padding: 20px; /* Menos padding en pantallas pequeñas */
+        margin: 10px;
+    }
+
+    .title {
+        font-size: 2rem; /* Título más pequeño */
+    }
+}

@@ -1,14 +1,10 @@
-// src/components/CartWidget.jsx
-import React from 'react';
-
 const CartWidget = () => {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
       🛒
-      <span style={{ marginLeft: '5px', fontWeight: 'bold' }}>3</span>
+      <span style={{ fontWeight: 'bold' }}>0</span>
     </div>
   );
 };
-
 
 export default CartWidget;
